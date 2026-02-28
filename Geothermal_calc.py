@@ -365,7 +365,7 @@ with col_left:
     )])
     fig_capex.update_layout(
         title="Upfront CAPEX ($M)",
-    font=dict(size=15)),
+    font=dict(size=15),
         yaxis_title="Million USD",
         template="plotly_white",
         height=400,
