@@ -498,10 +498,12 @@ st.markdown(f"""
 
 **🌋 Geothermal vs ⛽ Diesel:**
 st.markdown(f"""
-Geothermal is overwhelmingly superior for baseload. To deliver the same {R['total_energy_gwh']:.2f} GWh,
-Diesel requires a {R['total_energy_gwh']:.2f} GWh, plant vs Geothermal's {R['geo_gross_mw']:.3f} MW.
-Diesel's 25-year cumulative cost (\\${R['diesel_cum_cost']/1e6:,.2f}M) is drastically higher than
-Geothermal's (\\${R['geo_cum_cost']/1e6:,.2f}M), due to continuous fuel expenditure.
+Geothermal is overwhelmingly superior for baseload. To deliver the same **{R['total_energy_gwh']:.2f} GWh**, 
+Diesel requires a **{R['diesel_gross_mw']:.3f} MW** plant vs Geothermal's **{R['geo_gross_mw']:.3f} MW**. 
+
+Diesel's 25-year cumulative cost (**\${R['diesel_cum_cost']/1e6:,.2f}M**) 
+is drastically higher than Geothermal's (**\${R['geo_cum_cost']/1e6:,.2f}M**), 
+due to continuous fuel expenditure.
 """)
 
 **🌋 Geothermal vs ☀️ Solar (Hybrid):**
