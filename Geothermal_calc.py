@@ -360,7 +360,7 @@ with col_left:
         y=capex_m,
         marker_color=['#2E7D32', '#37474F', '#FFC107'],
         text=[f"${v:,.2f}M" for v in capex_m],
-        textposition='outside'
+        textposition='outside',
         textfont=dict(size=12, color="black"),
     )])
     fig_capex.update_layout(
