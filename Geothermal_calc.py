@@ -361,9 +361,11 @@ with col_left:
         marker_color=['#2E7D32', '#37474F', '#FFC107'],
         text=[f"${v:,.2f}M" for v in capex_m],
         textposition='outside'
+        textfont=dict(size=12, color="black"),
     )])
     fig_capex.update_layout(
         title="Upfront CAPEX ($M)",
+    font=dict(size=15)),
         yaxis_title="Million USD",
         template="plotly_white",
         height=400,
@@ -416,7 +418,7 @@ with col_right2:
     )])
     fig_profit.update_layout(
         title="25-Year Cumulative Net Profit ($M)",
-        yaxis_title="Million USD",
+        yaxis_title="Million USD", font=dict(size=18),
         template="plotly_white",
         height=400,
     )
