@@ -9,7 +9,7 @@ import inputs
 from Calculation import run_full_analysis, SolarEconomicsHybrid, DieselEconomics
 
 # Page Config
-# =========================================================================
+# ===========
 st.set_page_config(
     page_title="Geothermal Economic Comparison",
     page_icon="sudapet_logo.png",
@@ -17,7 +17,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 # Logo Loader
-# =========================================================================
+# ===========
 def get_base64_image(image_path):
     """Convert image file to base64 string for HTML embedding."""
     img_path = Path(image_path)
@@ -29,9 +29,8 @@ def get_base64_image(image_path):
 
 logo_base64 = get_base64_image("sudapet_logo.png")
 
-# =========================================================================
 # Custom CSS (Responsive)
-# =========================================================================
+# =======================
 st.markdown("""
 <style>
     /* Header Container */
@@ -59,8 +58,8 @@ st.markdown("""
     }
     
     .title-text { margin: 0; font-size: 2.5rem; color: white; line-height: 1.2;}
-    .subtitle-text { margin: 0.5rem 0 0 0; font-size: 1.2rem; color: #E8F5E9; }
-    .sub-subtitle-text { margin: 0.3rem 0 0 0; font-size: 1rem; color: #A5D6A7; }
+    .subtitle-text { margin: 0.5rem 0 0 0; font-size: 1.5rem; color: #E8F5E9; }
+    .sub-subtitle-text { margin: 0.3rem 0 0 0; font-size: 1.3rem; color: #A5D6A7; }
 
     /* Metric cards */
     .metric-card {
@@ -71,8 +70,8 @@ st.markdown("""
         box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         margin-bottom: 0.8rem;
     }
-    .metric-card .label { color: #666; font-size: 0.85rem; margin-bottom: 0.2rem; }
-    .metric-card .value { color: #1B5E20; font-size: 1.4rem; font-weight: 700; }
+    .metric-card .label { color: #666; font-size: 1.2rem; margin-bottom: 0.2rem; }
+    .metric-card .value { color: #1B5E20; font-size: 1.8rem; font-weight: 700; }
 
     /* Section headers */
     .section-header {
@@ -87,7 +86,7 @@ st.markdown("""
     }
 
     /* Table styling */
-    .styled-table { width: 100%; border-collapse: collapse; font-size: 0.95rem; border-radius: 8px; overflow: hidden; }
+    .styled-table { width: 100%; border-collapse: collapse; font-size: 1.3rem; border-radius: 8px; overflow: hidden; }
     .styled-table thead tr { background-color: #1565C0; color: white; text-align: center; }
     .styled-table th, .styled-table td { padding: 10px 14px; text-align: center; border: 1px solid #ddd; }
     .highlight-green { background-color: #C8E6C9 !important; font-weight: 600; }
@@ -97,9 +96,8 @@ st.markdown("""
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
 
-    /* ================================================================= */
     /* MOBILE RESPONSIVENESS (SMARTPHONES)                                 */
-    /* ================================================================= */
+    /* =================================== */
     @media (max-width: 768px) {
         .header-flex {
             flex-direction: column; /* Stack logo above text */
@@ -113,10 +111,10 @@ st.markdown("""
             font-size: 1.6rem; /* Smaller title font */
         }
         .subtitle-text {
-            font-size: 1rem;
+            font-size: 1.2rem;
         }
         .sub-subtitle-text {
-            font-size: 0.85rem;
+            font-size: 1rem;
         }
         .main-header {
             padding: 1rem; /* Less padding around the edges on small screens */
@@ -127,19 +125,17 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
-# =========================================================================
-# =========================================================================
 # Header with Logo
-# =========================================================================
+# ================
 if logo_base64:
     st.markdown(f"""
     <div class="main-header">
         <div class="header-flex">
             <img src="data:image/png;base64,{logo_base64}" class="header-logo">
             <div>
-                <h1 class="title-text">Geothermal Economic Evaluation Calculator</h1>
+                <h1 class="title-text">Geothermal Economic Comparison</h1>
                 <p class="subtitle-text">Comparative analysis — Geothermal vs Diesel vs Solar (Hybrid+BESS)</p>
-                <p class="sub-subtitle-text">Based on single hot water producing well in oil field</p>
+                <p class="sub-subtitle-text">25-Year Economic Outlook: Single-Well Geothermal Assessment vs. Diesel & Solar Parity.</p>
             </div>
         </div>
     </div>
@@ -151,9 +147,8 @@ else:
         <p>Comparative analysis — Geothermal vs Diesel vs Solar (Hybrid+BESS)</p>
     </div>
     """, unsafe_allow_html=True)
-#=========================================================================
 # Sidebar Inputs
-# =========================================================================
+# ==============
 D = inputs.DEFAULTS
 
 st.sidebar.markdown("## ⚙️ Project Parameters")
@@ -197,9 +192,8 @@ batt_life = st.sidebar.number_input("Battery Life (years)", value=D['battery_lif
 batt_cycles = st.sidebar.number_input("Battery Annual Cycles", value=D['battery_annual_cycles'], step=10)
 batt_om = st.sidebar.number_input("Battery O&M ($/MWh/yr)", value=D['battery_o_and_m_cost_per_mwh_yr'], step=500.0)
 
-# =========================================================================
 # Assemble Parameters & Run
-# =========================================================================
+# =========================
 PROJECT_PARAMETERS = {
     'hours_per_year': hours_per_year,
     'inflation_rate': inflation_rate,
@@ -243,9 +237,8 @@ PROJECT_PARAMETERS = {
 # Run the full analysis
 R = run_full_analysis(PROJECT_PARAMETERS)
 
-# =========================================================================
 # Helper: Metric Card
-# =========================================================================
+# ===================
 def metric_card(label, value):
     return f"""
     <div class="metric-card">
@@ -253,9 +246,8 @@ def metric_card(label, value):
         <div class="value">{value}</div>
     </div>"""
 
-# =========================================================================
 # Section 1: Geothermal Resource Assessment
-# =========================================================================
+# =========================================
 st.markdown('<div class="section-header">🔥 Geothermal Resource Assessment</div>', unsafe_allow_html=True)
 
 c1, c2, c3, c4 = st.columns(4)
@@ -270,9 +262,8 @@ with c4:
 
 st.markdown(metric_card("Target Energy Output (25 yr)", f"{R['total_energy_gwh']:.2f} GWh"), unsafe_allow_html=True)
 
-# =========================================================================
 # Section 2: Comparative Performance Table
-# =========================================================================
+# ========================================
 st.markdown('<div class="section-header">📊 25-Year Comparative Financial Metrics — Equal Energy Output</div>', unsafe_allow_html=True)
 
 
@@ -333,9 +324,8 @@ for i in range(3):
 table_html += "</tbody></table>"
 st.markdown(table_html, unsafe_allow_html=True)
 
-# =========================================================================
 # Section 3: NPV & LCOE Table
-# =========================================================================
+# ===========================
 st.markdown('<div class="section-header">💰 Net Present Value (NPV) & Levelized Cost of Electricity (LCOE)</div>', unsafe_allow_html=True)
 
 npvs = [R['geo_npv'], R['diesel_npv'], R['solar_npv']]
@@ -357,9 +347,8 @@ for i in range(3):
 table2 += "</tbody></table>"
 st.markdown(table2, unsafe_allow_html=True)
 
-# =========================================================================
 # Section 4: Charts
-# =========================================================================
+# =================
 st.markdown('<div class="section-header">📈 Visual Comparison</div>', unsafe_allow_html=True)
 
 col_left, col_right = st.columns(2)
@@ -369,7 +358,7 @@ with col_left:
     fig_capex = go.Figure(data=[go.Bar(
         x=projects,
         y=capex_m,
-        marker_color=['#2E7D32', '#D84315', '#F9A825'],
+        marker_color=['#2E7D32', '#37474F', '#FFC107'],
         text=[f"${v:,.2f}M" for v in capex_m],
         textposition='outside'
     )])
@@ -386,7 +375,7 @@ with col_right:
     fig_lcoe = go.Figure(data=[go.Bar(
         x=projects,
         y=lcoes,
-        marker_color=['#2E7D32', '#D84315', '#F9A825'],
+        marker_color=['#2E7D32', '#37474F', '#FFC107'],
         text=[f"${v:,.2f}" for v in lcoes],
         textposition='outside'
     )])
@@ -405,7 +394,7 @@ with col_left2:
     fig_cost = go.Figure(data=[go.Bar(
         x=projects,
         y=cum_cost_m,
-        marker_color=['#2E7D32', '#D84315', '#F9A825'],
+        marker_color=['#2E7D32', '#37474F', '#FFC107'],
         text=[f"${v:,.2f}M" for v in cum_cost_m],
         textposition='outside'
     )])
@@ -421,7 +410,7 @@ with col_right2:
     fig_profit = go.Figure(data=[go.Bar(
         x=projects,
         y=cum_profit_m,
-        marker_color=['#2E7D32', '#D84315', '#F9A825'],
+        marker_color=['#2E7D32', '#37474F', '#FFC107'],
         text=[f"${v:,.2f}M" for v in cum_profit_m],
         textposition='outside'
     )])
@@ -433,9 +422,8 @@ with col_right2:
     )
     st.plotly_chart(fig_profit, use_container_width=True)
 
-# =========================================================================
 # Section 5: Yearly Cumulative Profit Chart
-# =========================================================================
+# =========================================
 st.markdown('<div class="section-header">📉 Yearly Cumulative Net Profit Trajectory</div>', unsafe_allow_html=True)
 
 lifetime = max(geo_lifetime, diesel_lifetime, solar_lifetime)
@@ -499,22 +487,17 @@ fig_traj.update_layout(
 )
 st.plotly_chart(fig_traj, use_container_width=True)
 
-# =========================================================================
 # Section 6: Interpretation
-# =========================================================================
+# ========================
 st.markdown('<div class="section-header">📝 Economic Interpretation</div>', unsafe_allow_html=True)
 
 st.markdown(f"""
-**This analysis compares Geothermal, Diesel, and Solar projects on an 'apple-to-apple' baseload
-perspective, ensuring each technology delivers the same total energy output of
-{R['total_energy_gwh']:.2f} GWh over a 25-year lifetime.**
+**This analysis compares Geothermal, Diesel, and Solar projects on an 'apple-to-apple' baseload perspective, ensuring each technology delivers the same total energy output of {R['total_energy_gwh']:.2f} GWh over a 25-year lifetime.**
 
 ---
 
 **🌋 Geothermal vs ⛽ Diesel:**
-Geothermal is overwhelmingly superior for baseload. To deliver the same {R['total_energy_gwh']:.2f} GWh,
-Diesel requires a {R['diesel_gross_mw']:.3f} MW plant vs Geothermal's {R['geo_gross_mw']:.3f} MW.
-Diesel's 25-year cumulative cost (${R['diesel_cum_cost']/1e6:,.2f}M) is drastically higher than Geothermal's (${R['geo_cum_cost']/1e6:,.2f}M), due to continuous fuel expenditure.
+Geothermal is overwhelmingly superior for baseload. To deliver the same {R['total_energy_gwh']:.2f} GWh, Diesel requires a {R['diesel_gross_mw']:.3f} MW plant vs Geothermal's {R['geo_gross_mw']:.3f} MW. Diesel's 25-year cumulative cost (${R['diesel_cum_cost']/1e6:,.2f}M) is drastically higher than Geothermal's (${R['geo_cum_cost']/1e6:,.2f}M), due to continuous fuel expenditure.
 
 **🌋 Geothermal vs ☀️ Solar (Hybrid):**
 To match Geothermal's total energy output, Solar requires a significantly larger installed capacity of {R['solar_gross_mw']:.3f} MW. Solar achieves a 25-year cumulative cost of ${R['solar_cum_cost']/1e6:,.2f}M vs Geothermal's ${R['geo_cum_cost']/1e6:,.2f}M. However, Geothermal's inherent continuous, dispatchable baseload nature remains a critical advantage for grid stability.
