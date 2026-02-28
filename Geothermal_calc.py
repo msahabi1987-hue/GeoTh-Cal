@@ -503,7 +503,7 @@ is drastically higher than Geothermal's **(${R['geo_cum_cost']/1e6:,.2f}M)**, du
 **🌋 Geothermal vs ☀️ Solar (Hybrid):**
 To match Geothermal's total energy output, Solar requires a significantly larger installed capacity of
 **{R['solar_gross_mw']:.3f}MW**. Solar achieves a 25-year cumulative cost of **(${R['solar_cum_cost']/1e6:.2f} M)**
-vs Geothermal's **${R['geo_cum_cost']/1e6:,.2f}M**. However, Geothermal's inherent continuous, dispatchable
+vs Geothermal's **{R['geo_cum_cost']/1e6:,.2f} M**. However, Geothermal's inherent continuous, dispatchable
 baseload nature remains a critical advantage for grid stability.
 
 ---
