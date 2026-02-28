@@ -497,27 +497,20 @@ st.markdown(f"""
 ---
 
 **🌋 Geothermal vs ⛽ Diesel:**
-st.markdown(
-    f"""
-    Geothermal is overwhelmingly superior for baseload. To deliver the same **{R['total_energy_gwh']:.2f} GWh**, 
-    Diesel requires a **{R['diesel_gross_mw']:.3f} MW** plant vs Geothermal's **{R['geo_gross_mw']:.3f} MW**. 
-    
-    Diesel's 25-year cumulative cost (**\${R['diesel_cum_cost']/1e6:,.2f}M**) 
-    is drastically higher than Geothermal's (**\${R['geo_cum_cost']/1e6:,.2f}M**), 
-    due to continuous fuel expenditure.
-    """
-)
+st.markdown(f"""
+Geothermal is overwhelmingly superior for baseload. To deliver the same **{R['total_energy_gwh']:.2f} GWh**,
+Diesel requires a **{R['diesel_gross_mw']:.3f} MW** plant vs Geothermal's **{R['geo_gross_mw']:.3f} MW**.
+Diesel's 25-year cumulative cost (**\\${R['diesel_cum_cost']/1e6:,.2f}M**) is drastically higher than
+Geothermal's (**\\${R['geo_cum_cost']/1e6:,.2f}M**), due to continuous fuel expenditure.
+""")
 
 **🌋 Geothermal vs ☀️ Solar (Hybrid):**
-st.markdown(
-    f"""
-    To match Geothermal's total energy output, Solar requires a significantly larger installed capacity of
-    **{R['solar_gross_mw']:.3f} MW**. Solar achieves a 25-year cumulative cost of
-    **\${R['solar_cum_cost']/1e6:,.2f}M** vs Geothermal's **\${R['geo_cum_cost']/1e6:,.2f}M**.
-    However, Geothermal's inherent continuous, dispatchable baseload nature remains a critical advantage
-    for grid stability.
-    """
-)
+st.markdown(f"""
+To match Geothermal's total energy output, Solar requires a significantly larger installed capacity of
+**{R['solar_gross_mw']:.3f} MW**. Solar achieves a 25-year cumulative cost of (**\\${R['solar_cum_cost']/1e6:,.2f}M**)
+vs Geothermal's (**\\${R['geo_cum_cost']/1e6:,.2f}M**). However, Geothermal's inherent continuous, dispatchable
+baseload nature remains a critical advantage for grid stability.
+""")
 ---
 
 **Overall Conclusion:** For a truly 'apple-to-apple' baseload comparison delivering the same total energy over 25 years, **Geothermal emerges as the most balanced and strategically robust option**, offering strong economic performance relative to Diesel, and unmatched reliability compared to Solar.
