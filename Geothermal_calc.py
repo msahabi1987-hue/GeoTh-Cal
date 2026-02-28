@@ -2,8 +2,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
-import plotly.express as px
-from plotly.subplots import make_subplots
 import base64
 from pathlib import Path
 
@@ -19,15 +17,12 @@ st.set_page_config(
 )
 
 # ==================== CUSTOM CSS & THEMING ====================
-# Professional Dark Theme
 st.markdown("""
 <style>
-    /* Main Background & Text */
     .main { background-color: #0E1117; color: #FAFAFA; }
     .stApp { background-color: #0E1117; }
     h1, h2, h3, h4, h5, h6, p, div, span, label { color: #FAFAFA !important; }
     
-    /* Header Container */
     .main-header {
         background: linear-gradient(135deg, #0d47a1 0%, #1976d2 100%);
         padding: 1.5rem 2rem;
@@ -55,19 +50,17 @@ st.markdown("""
     .subtitle-text { margin: 0.5rem 0 0 0; font-size: 1.4rem; color: #e3f2fd !important; opacity: 0.9; }
     .sub-subtitle-text { margin: 0.3rem 0 0 0; font-size: 1.2rem; color: #bbdefb !important; opacity: 0.8; }
 
-    /* Metric Cards - Dark Theme */
     .metric-card {
         background: #1E293B;
         border-radius: 10px;
         padding: 1.2rem;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         margin-bottom: 1rem;
-        border-left: 4px solid #1976d2;
+        border-left: 4px solid #1976d极速赛车开奖直播2;
     }
     .metric-card .label { color: #94a3b8 !important; font-size: 0.95rem; margin-bottom: 0.4rem; font-weight: 500; }
     .metric-card .value { color: #FFFFFF; font-size: 1.6rem; font-weight: 700; }
 
-    /* Section Headers */
     .section-header {
         background: linear-gradient(90deg, rgba(25,118,210,0.2) 0%, rgba(25,118,210,0) 100%);
         padding: 0.8rem 1.5rem;
@@ -79,14 +72,13 @@ st.markdown("""
         border-left: 4px solid #1976d2;
     }
 
-    /* Table Styling - Dark */
     .styled-table { 
         width: 100%; 
         border-collapse: collapse; 
         font-size: 0.95rem; 
         border-radius: 10px; 
         overflow: hidden; 
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 4极速赛车开奖直播px 10px rgba(0, 0, 0, 0.2);
         background-color: #1E293B;
     }
     .styled-table thead tr { 
@@ -106,21 +98,17 @@ st.markdown("""
     .highlight-green { background-color: rgba(76,175,80,0.2) !important; font-weight: 600; color: #4caf50 !important; }
     .highlight-red { background-color: rgba(244,67,54,0.2) !important; font-weight: 600; color: #f44336 !important; }
 
-    /* Sidebar Styling */
     .css-1d391kg, .css-1oe5cao { background-color: #1E293B; }
     .sidebar .sidebar-content { background-color: #1E293B; }
 
-    /* Input Fields & Sliders */
     .stNumberInput, .stSlider { background-color: #1E293B; }
     .st-bb { background-color: #1E293B; }
     .st-at { background-color: #1976d2; }
 
-    /* Hide default streamlit elements */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
 
-    /* MOBILE RESPONSIVENESS */
     @media (max-width: 768px) {
         .header-flex {
             flex-direction: column;
@@ -149,7 +137,6 @@ st.markdown("""
         .metric-card .value {
             font-size: 1.4rem;
         }
-        /* Improve touch targets for sliders on mobile */
         .stSlider > div { height: 28px; }
         .stSlider thumb { height: 24px; width: 24px; }
     }
@@ -168,7 +155,6 @@ def get_base64_image(image_path):
 
 logo_base64 = get_base64_image("sudapet_logo.png")
 
-# Header with Logo
 if logo_base64:
     st.markdown(f"""
     <div class="main-header">
@@ -193,7 +179,6 @@ else:
 # ==================== SIDEBAR INPUTS ====================
 D = inputs.DEFAULTS
 
-# Use columns inside sidebar for a more compact layout on mobile
 st.sidebar.markdown("## ⚙️ Project Parameters")
 
 with st.sidebar.expander("🌍 General Parameters", expanded=True):
@@ -206,27 +191,27 @@ with st.sidebar.expander("🌋 Geothermal Parameters", expanded=False):
     geo_flow = st.number_input("Flow Rate (bbl/day)", value=D['geothermal_flowrate_bpd'], step=100, help="Geothermal fluid flow rate from the well.")
     geo_prod_temp = st.number_input("Production Temp (°C)", value=D['geothermal_production_temperature_c'], step=5.0, help="Temperature of the produced geothermal fluid.")
     geo_inj_temp = st.number_input("Injection Temp (°C)", value=D['geothermal_injection_temperature_c'], step=5.0, help="Temperature of the fluid after heat extraction, for reinjection.")
-    geo_efficiency = st.number_input("Conversion Efficiency", value=D['geothermal_conversion_efficiency'], step=0.01, format="%.2f", help="Efficiency of converting thermal energy to electrical energy.")
-    geo_aux = st.number_input("Aux Consumption Fraction", value=D['geothermal_aux_consumption_fraction'], step=0.01, format="%.2f", help="Fraction of generated power used to run the plant itself.")
+    geo_efficiency = st.number_input("Conversion Efficiency", value=D['geothermal_conversion_efficiency'], step=极速赛车开奖直播0.01, format="%.2f", help="Efficiency of converting thermal energy to electrical energy.")
+    geo_aux = st.number_input("Aux Consumption Fraction", value=D['geothermal_aux_consumption_fraction'], step=0.01, format="%.极速赛车开奖直播2f", help="Fraction of generated power used to run the plant itself.")
     geo_cf = st.slider("Geo Capacity Factor", 0.0, 1.0, value=D['geothermal_capacity_factor'], step=0.05, help="Ratio of actual output to maximum possible output over a period.")
-    geo_capex_per_mw = st.number_input("Geo CAPEX ($/MW)", value=D['geothermal_capex_usd_per_mw'], step=100000, help="Capital expenditure per megawatt of installed capacity.")
+    geo_capex_per_mw = st.number_input("Geo CAPEX ($/MW)", value=D['geothermal_capex_us极速赛车开奖直播d_per_m极速赛车开奖直播w'], step=100000, help="Capital expenditure per megawatt of installed capacity.")
     geo_om = st.number_input("Geo O&M (% of CAPEX)", value=D['geothermal_annual_om_percent_of_capex']*100, step=0.1, format="%.1f", help="Annual operation & maintenance cost as a percentage of CAPEX.") / 100
     geo_lifetime = st.number_input("Geo Lifetime (years)", value=D['geothermal_project_lifetime_years'], step=1, help="Expected economic lifetime of the geothermal plant.")
 
 with st.sidebar.expander("⛽ Diesel Parameters", expanded=False):
     diesel_capex_mw = st.number_input("Diesel CAPEX ($/MW)", value=D['diesel_capex_usd_per_mw'], step=50000, help="Capital expenditure per megawatt of installed diesel capacity.")
-    diesel_om = st.number_input("Diesel O&M (% of CAPEX)", value=D['diesel_annual_om_percent_of_capex']*100, step=0.1, format="%.1f", help="Annual O&M cost as a percentage of diesel CAPEX.") / 极速赛车开奖直播
-    diesel_fuel = st.number_input("Diesel Fuel ($/liter)", value=D['diesel_fuel_cost_usd_per_liter'], step=0.1, format="%.2极速赛车开奖直播", help="Cost of diesel fuel per liter.")
+    diesel_om = st.number_input("Diesel O&M (% of CAPEX)", value=D['diesel_annual_om_percent_of_capex']*100, step=0.1, format="%.1f", help="Annual O&M cost as a percentage of diesel CAPEX.") / 100
+    diesel_fuel = st.number_input("Diesel Fuel ($/liter)", value=D['diesel_fuel_cost_usd_per_liter'], step=0.1, format="%.2f", help="Cost of diesel fuel per liter.")
     diesel_sfc = st.number_input("Diesel SFC (L/kWh)", value=D['diesel_sfc_l_per_kwh'], step=0.01, format="%.2f", help="Specific fuel consumption: liters of fuel per kWh generated.")
     diesel_lifetime = st.number_input("Diesel Lifetime (years)", value=D['diesel_project_lifetime_years'], step=1, help="Expected economic lifetime of the diesel plant.")
 
 with st.sidebar.expander("☀️ Solar + Battery Parameters", expanded=False):
-    solar_cape极速赛车开奖直播_mw = st.number_input("Solar CAPEX ($/MW)", value=D['solar_capex_usd_per_mw'], step=50000, help="Capital expenditure per megawatt of installed solar PV capacity.")
+    solar_capex_mw = st.number_input("Solar CAPEX ($/MW)", value=D['solar_capex_usd_per_mw'], step=50000, help="Capital expenditure per megawatt of installed solar PV capacity.")
     solar_om = st.number_input("Solar O&M (% of CAPEX)", value=D['solar_annual_om_percent_of_capex']*100, step=0.1, format="%.1f", help="Annual O&M cost as a percentage of solar CAPEX.") / 100
     solar_cf = st.slider("Solar Capacity Factor", 0.0, 1.0, value=D['solar_capacity_factor'], step=0.05, help="Average capacity factor for the solar PV plant.")
     solar_lifetime = st.number_input("Solar Lifetime (years)", value=D['solar_project_lifetime_years'], step=1, help="Expected economic lifetime of the solar plant.")
     panel_degrade = st.number_input("Panel Degradation Rate (%/yr)", value=D['panel_degradation_rate']*100, step=0.1, format="%.1f", help="Annual rate of solar panel efficiency degradation.") / 100
-    inverter_life = st.number_input("Inverter Life (years)", value=D['inverter极速赛车开奖直播_life_years'], step=1, help="Lifespan of inverters before replacement is needed.")
+    inverter_life = st.number_input("Inverter Life (years)", value=D['inverter_life_years'], step=1, help="Lifespan of inverters before replacement is needed.")
     inverter_cost = st.number_input("Inverter Replacement ($/MW)", value=D['inverter_replacement_cost_per_mw'], step=5000.0, help="Cost to replace inverters per megawatt of capacity.")
     batt_capex_mwh = st.number_input("Battery CAPEX ($/MWh)", value=D['battery_capex_per_mwh'], step=10000.0, help="Capital expenditure per megawatt-hour of battery storage.")
     batt_mwh_per_mw = st.number_input("Battery MWh per MW PV", value=D['battery_capacity_mwh_per_mw_pv'], step=0.1, format="%.1f", help="Storage capacity (MWh) installed per megawatt of solar PV.")
@@ -247,7 +232,7 @@ PROJECT_PARAMETERS = {
     'geothermal_injection_temperature_c': geo_inj_temp,
     'geothermal_conversion_efficiency': geo_efficiency,
     'geothermal_aux_consumption_fraction': geo_aux,
-    '极速赛车开奖直播geothermal_capacity_factor': geo_cf,
+    'geothermal_capacity_factor': geo_cf,
     'geothermal_capex_usd_per_mw': geo_capex_per_mw,
     'geothermal_annual_om_percent_of_capex': geo_om,
     'geothermal_project_lifetime_years': geo_lifetime,
@@ -258,7 +243,7 @@ PROJECT_PARAMETERS = {
     'diesel_fuel_cost_usd_per_liter': diesel_fuel,
     'diesel_sfc_l_per_kwh': diesel_sfc,
     'diesel_project_lifetime_years': diesel_lifetime,
-    'diesel_land_use_sqm_per_mw': 100,
+    'diesel_land_use_sqm_per极速赛车开奖直播_mw': 100,
 
     'solar_capex_usd_per_mw': solar_capex_mw,
     'solar_annual_om_percent_of_capex': solar_om,
@@ -271,5 +256,22 @@ PROJECT_PARAMETERS = {
     'battery_capex_per_mwh': batt_capex_mwh,
     'battery_capacity_mwh_per_mw_pv': batt_mwh_per_mw,
     'battery_annual_cycles': batt_cycles,
-    'battery_efficiency': batt_efficiency
+    'battery_efficiency': batt_efficiency,
+    'battery_life_years': batt_life,
+    'battery_o_and_m_cost_per_mwh_yr': batt_om,
+}
+
+# Run the full analysis
+R = run_full_analysis(PROJECT_PARAMETERS)
+
+# Helper: Metric Card
+def metric_card(label, value):
+    return f"""
+    <div class="metric-card">
+        <div class="label">{label}</div>
+        <div class="value">{value}</div>
+    </div>"""
+
+# Section 1: Geothermal Resource Assessment
+st.markdown('<div class="section-header">🔥 Ge
 \<Streaming stoppped because the conversation grew too long for this model\>
