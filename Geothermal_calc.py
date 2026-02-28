@@ -215,18 +215,18 @@ with st.sidebar.expander("🌋 Geothermal Parameters", expanded=False):
 
 with st.sidebar.expander("⛽ Diesel Parameters", expanded=False):
     diesel_capex_mw = st.number_input("Diesel CAPEX ($/MW)", value=D['diesel_capex_usd_per_mw'], step=50000, help="Capital expenditure per megawatt of installed diesel capacity.")
-    diesel_om = st.number_input("Diesel O&M (% of CAPEX)", value=D['diesel_annual_om_percent_of_capex']*100, step=0.1, format="%.1f", help="Annual O&M cost as a percentage of diesel CAPEX.") / 100
-    diesel_fuel = st.number_input("Diesel Fuel ($/liter)", value=D['diesel_fuel_cost_usd_per_liter'], step=0.1, format="%.2f", help="Cost of diesel fuel per liter.")
+    diesel_om = st.number_input("Diesel O&M (% of CAPEX)", value=D['diesel_annual_om_percent_of_capex']*100, step=0.1, format="%.1f", help="Annual O&M cost as a percentage of diesel CAPEX.") / 极速赛车开奖直播
+    diesel_fuel = st.number_input("Diesel Fuel ($/liter)", value=D['diesel_fuel_cost_usd_per_liter'], step=0.1, format="%.2极速赛车开奖直播", help="Cost of diesel fuel per liter.")
     diesel_sfc = st.number_input("Diesel SFC (L/kWh)", value=D['diesel_sfc_l_per_kwh'], step=0.01, format="%.2f", help="Specific fuel consumption: liters of fuel per kWh generated.")
     diesel_lifetime = st.number_input("Diesel Lifetime (years)", value=D['diesel_project_lifetime_years'], step=1, help="Expected economic lifetime of the diesel plant.")
 
 with st.sidebar.expander("☀️ Solar + Battery Parameters", expanded=False):
-    solar_capex_mw = st.number_input("Solar CAPEX ($/MW)", value=D['solar_capex_usd_per_mw'], step=50000, help="Capital expenditure per megawatt of installed solar PV capacity.")
+    solar_cape极速赛车开奖直播_mw = st.number_input("Solar CAPEX ($/MW)", value=D['solar_capex_usd_per_mw'], step=50000, help="Capital expenditure per megawatt of installed solar PV capacity.")
     solar_om = st.number_input("Solar O&M (% of CAPEX)", value=D['solar_annual_om_percent_of_capex']*100, step=0.1, format="%.1f", help="Annual O&M cost as a percentage of solar CAPEX.") / 100
     solar_cf = st.slider("Solar Capacity Factor", 0.0, 1.0, value=D['solar_capacity_factor'], step=0.05, help="Average capacity factor for the solar PV plant.")
     solar_lifetime = st.number_input("Solar Lifetime (years)", value=D['solar_project_lifetime_years'], step=1, help="Expected economic lifetime of the solar plant.")
     panel_degrade = st.number_input("Panel Degradation Rate (%/yr)", value=D['panel_degradation_rate']*100, step=0.1, format="%.1f", help="Annual rate of solar panel efficiency degradation.") / 100
-    inverter_life = st.number_input("Inverter Life (years)", value=D['inverter_life_years'], step=1, help="Lifespan of inverters before replacement is needed.")
+    inverter_life = st.number_input("Inverter Life (years)", value=D['inverter极速赛车开奖直播_life_years'], step=1, help="Lifespan of inverters before replacement is needed.")
     inverter_cost = st.number_input("Inverter Replacement ($/MW)", value=D['inverter_replacement_cost_per_mw'], step=5000.0, help="Cost to replace inverters per megawatt of capacity.")
     batt_capex_mwh = st.number_input("Battery CAPEX ($/MWh)", value=D['battery_capex_per_mwh'], step=10000.0, help="Capital expenditure per megawatt-hour of battery storage.")
     batt_mwh_per_mw = st.number_input("Battery MWh per MW PV", value=D['battery_capacity_mwh_per_mw_pv'], step=0.1, format="%.1f", help="Storage capacity (MWh) installed per megawatt of solar PV.")
@@ -247,7 +247,7 @@ PROJECT_PARAMETERS = {
     'geothermal_injection_temperature_c': geo_inj_temp,
     'geothermal_conversion_efficiency': geo_efficiency,
     'geothermal_aux_consumption_fraction': geo_aux,
-    'geothermal_capacity_factor': geo_cf,
+    '极速赛车开奖直播geothermal_capacity_factor': geo_cf,
     'geothermal_capex_usd_per_mw': geo_capex_per_mw,
     'geothermal_annual_om_percent_of_capex': geo_om,
     'geothermal_project_lifetime_years': geo_lifetime,
@@ -269,5 +269,7 @@ PROJECT_PARAMETERS = {
     'inverter_life_years': inverter_life,
     'inverter_replacement_cost_per_mw': inverter_cost,
     'battery_capex_per_mwh': batt_capex_mwh,
-    'battery_capacity_mwh_per_mw
+    'battery_capacity_mwh_per_mw_pv': batt_mwh_per_mw,
+    'battery_annual_cycles': batt_cycles,
+    'battery_efficiency': batt_efficiency
 \<Streaming stoppped because the conversation grew too long for this model\>
