@@ -133,7 +133,7 @@ if logo_base64:
         <div class="header-flex">
             <img src="data:image/png;base64,{logo_base64}" class="header-logo">
             <div>
-                <h1 class="title-text">Geothermal Economic Comparison</h1>
+                <h1 class="title-text">Geothermal Economic</h1>
                 <p class="subtitle-text">Comparative analysis — Geothermal vs Diesel vs Solar (Hybrid+BESS)</p>
                 <p class="sub-subtitle-text">25-Year Economic Outlook: Single-Well Geothermal Assessment vs. Diesel & Solar Parity.</p>
             </div>
